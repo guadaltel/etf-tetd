@@ -87,9 +87,14 @@ class TeTestTask extends AbstractTestTask {
 		domFactory.setNamespaceAware(true);
 		final DocumentBuilder builder = domFactory.newDocumentBuilder();
 
-		final String endpoint = this.testTaskDto.getTestObject().getResourceByName(
+		final String username = this.testTaskDto.getTestObject().properties().getProperty("username");
+		final String password = this.testTaskDto.getTestObject().properties().getProperty("password");
+		
+		String endpoint = this.testTaskDto.getTestObject().getResourceByName(
 				"serviceEndpoint").toString();
-
+		if(!(username.isEmpty() || password.isEmpty())) {
+			endpoint = endpoint.concat("&username="+username+"&password="+password);
+		}
 		// TEAM engine can not escape characters other than '&' in the parameter values...
 		// Try to build an URI without escaping other characters.
 		URI apiUri;
