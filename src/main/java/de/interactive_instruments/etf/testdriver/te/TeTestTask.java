@@ -93,7 +93,7 @@ class TeTestTask extends AbstractTestTask {
 		String endpoint = this.testTaskDto.getTestObject().getResourceByName(
 				"serviceEndpoint").toString();
 		if(!(username.isEmpty() || password.isEmpty())) {
-			endpoint = endpoint.concat("&username="+username+"&password="+password);
+			endpoint = endpoint.concat("&user="+username+"&password="+password);
 		}
 		// TEAM engine can not escape characters other than '&' in the parameter values...
 		// Try to build an URI without escaping other characters.
